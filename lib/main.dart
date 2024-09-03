@@ -70,7 +70,8 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             heroTag: "123",
             onPressed: () {
-              Provider.of<Cart>(context, listen: false).addItem('New Item');
+              //Provider.of<Cart>(context, listen: false).addItem('New Item');
+              context.read<Cart>().addItem("1111111111");
             },
             child: Icon(Icons.add),
           ),
@@ -123,6 +124,14 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //context.read<Cart?>()?.addItem("MyWidget Item");  报错在context
+    print(context.read<Cart?>()?.items);
+  }
+
   @override
   Widget build(BuildContext context) {
     var cart = Provider.of<Cart>(context);
